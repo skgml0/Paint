@@ -73,7 +73,12 @@ function handleSaveClick(event) {
   link.download = "PaintJS[EXPORT]";
   link.click();
 }
-
+window.addEventListener("beforeunload", (event) => {
+  // 기본 동작 방지
+  event.preventDefault();
+  // Chrome에서는 returnValue 설정이 필요
+  event.returnValue = "";
+});
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
